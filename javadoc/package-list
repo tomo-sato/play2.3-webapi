@@ -1,4 +1,7 @@
+jp.dcworks.test.main
 jp.dcworks.webapi.actions
 jp.dcworks.webapi.controllers
 jp.dcworks.webapi.core.components
+jp.dcworks.webapi.params
+jp.dcworks.webapi.params.validator
 jp.dcworks.webapi.results

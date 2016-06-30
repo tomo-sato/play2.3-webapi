@@ -1,18 +1,124 @@
 package jp.dcworks.webapi.core.components;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 
 /**
  * ユーティリティコンポーネント。
  * @author tomo-sato
  */
 public class UtilityComponent {
-	
+
+	/** Logger定義 */
+	private static Logger LOGGER = (Logger) LoggerFactory.getLogger(UtilityComponent.class.getName());
+
+	/** 日付フォーマット：yyyy/MM/dd HH:mm */
+	public static final String DATE_FORMAT_YYYY_MM_DD_HH_MM_SS  = "yyyy/MM/dd HH:mm:ss";
+	/** 日付フォーマット：yyyy/MM/dd HH:mm */
+	public static final String DATE_FORMAT_YYYY_MM_DD_HH_MM     = "yyyy/MM/dd HH:mm";
+	/** 日付フォーマット：yyyy/MM/dd */
+	public static final String DATE_FORMAT_YYYY_MM_DD           = "yyyy/MM/dd";
+	/** 日付フォーマット：yyyy-MM-dd */
+	public static final String DATE_FORMAT_YYYY_MM_DD_2         = "yyyy-MM-dd";
+	/** 日付フォーマット：yyyy/MM */
+	public static final String DATE_FORMAT_YYYY_MM              = "yyyy/MM";
+	/** 日付フォーマット：yyyyMMddHHmmss */
+	public static final String DATE_FORMAT_YYYYMMDDHHMMSS       = "yyyyMMddHHmmss";
+	/** 日付フォーマット：yyyyMMddHHmm */
+	public static final String DATE_FORMAT_YYYYMMDDHHMM         = "yyyyMMddHHmm";
+	/** 日付フォーマット：yyyyMMdd */
+	public static final String DATE_FORMAT_YYYYMMDD             = "yyyyMMdd";
+	/** 日付フォーマット：dd */
+	public static final String DATE_FORMAT_DD                   = "dd";
+	/** 日付フォーマット：HHmm */
+	public static final String DATE_FORMAT_HHMM                 = "HHmm";
+
+	/**
+	 * 日付文字列を指定formatStrでDateに変換する。
+	 * @param dateStr 日付文字列
+	 * @param formatStr 日付フォーマット
+	 * @return 変換後の日付を返す。
+	 */
+	public static Date toDate(String dateStr, String formatStr) {
+		SimpleDateFormat sdf = new SimpleDateFormat(formatStr);
+		Date date = null;
+		try {
+			date = sdf.parse(dateStr);
+		} catch (ParseException e) {
+			LOGGER.warn(e.getMessage(), e);
+			return null;
+		}
+		return date;
+	}
+
+	/**
+	 * オブジェクトの構造をtoStringする。
+	 * @param obj toString対象のオブジェクト
+	 * @return toString結果
+	 */
+	public static String toStringField(Object obj) {
+		StringBuffer buff = new StringBuffer(obj.getClass().getName()).append("{");
+
+		Field[] fs = obj.getClass().getFields();
+		StringBuffer fieldBuff = new StringBuffer();
+		for (Field f : fs) {
+			// フィールドの属性（修飾子）を取得
+			int mod = f.getModifiers();
+
+			// 静的要素は除外
+			if (Modifier.isStatic(mod)) {
+				continue;
+			}
+
+			try {
+				fieldBuff.append(f.getName()).append("=");
+				if (f.get(obj) == null) {
+					fieldBuff.append("null, ");
+				} else {
+					if (f.get(obj) instanceof List) {
+						StringBuffer listBuff = new StringBuffer("[");
+
+						List<?> list = (List<?>) f.get(obj);
+						for (Object tmpObj : list) {
+							listBuff.append(tmpObj.toString()).append(", ");
+						}
+						if (listBuff.length() > 1) {
+							listBuff.delete(listBuff.length()-2, listBuff.length());
+						}
+
+						fieldBuff.append(listBuff.toString()).append("], ");
+					} else {
+						fieldBuff.append(f.get(obj).toString()).append(", ");
+					}
+				}
+
+			} catch (IllegalArgumentException e) {
+				LOGGER.warn(e.getMessage(), e);
+			} catch (IllegalAccessException e) {
+				LOGGER.warn(e.getMessage(), e);
+			} catch (Exception e) {
+				LOGGER.warn(e.getMessage(), e);
+			}
+		}
+		if (fieldBuff.length() > 1) {
+			fieldBuff.delete(fieldBuff.length()-2, fieldBuff.length());
+		}
+		buff.append(fieldBuff);
+		buff.append("}");
+		return buff.toString();
+	}
+
 	/**
 	 * NumberUtils#isNumber()のチェックを挟んでNumberUtilsの変換関数を呼び出す。
 	 * @see org.apache.commons.lang3.math.NumberUtils

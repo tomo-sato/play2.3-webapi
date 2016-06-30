@@ -11,7 +11,7 @@ import play.libs.Json;
  * API結果格納クラス。
  * @author tomo-sato
  */
-public class APIResult {
+public class ApiResult {
 
 	/** API結果：0.成功 */
 	public static final int API_RES_SUCCESS = 0;
@@ -34,11 +34,10 @@ public class APIResult {
 	 * コンストラクタ。
 	 * @param result 処理結果
 	 */
-	public APIResult(Integer result) {
+	public ApiResult(Integer result) {
 		super();
 		this.result = result;
 		this.content = new HashMap<String, Object>();
-
 	}
 
 	/**
@@ -46,7 +45,7 @@ public class APIResult {
 	 * @param result 処理結果
 	 * @param content コンテンツ
 	 */
-	public APIResult(Integer result, Map<String, Object> content) {
+	public ApiResult(Integer result, Map<String, Object> content) {
 		super();
 		this.result = result;
 		this.content = content;
@@ -66,6 +65,14 @@ public class APIResult {
 	 */
 	public void setContent(Map<String, Object> content) {
 		this.content = content;
+	}
+
+	/**
+	 * エラーコンテンツをセット。
+	 * @param errorsAsJson json形式のエラーメッセージ
+	 */
+	public void setErrors(JsonNode errorsAsJson) {
+		content.put("errors", errorsAsJson);
 	}
 
 	/**
