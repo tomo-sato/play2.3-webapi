@@ -2,8 +2,8 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                           controllers.Application.index()
+# WEB API
+GET     /wapi/sample                jp.dcworks.webapi.controllers.WebApi.sample()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
