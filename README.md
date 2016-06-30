@@ -51,6 +51,12 @@ birthday:19800408
 
 
 
+## ドキュメント
+
+* [play2.3-webapi アプリケーションベース API仕様](https://tomo-sato.github.io/play2.3-webapi/javadoc/)
+
+
+
 ### ライセンス
 Copyright 2016 Tomomichi Sato This software is licensed under the Apache 2 license, quoted below.
 
