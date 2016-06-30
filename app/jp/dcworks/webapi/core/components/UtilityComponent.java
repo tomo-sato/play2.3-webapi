@@ -63,6 +63,25 @@ public class UtilityComponent {
 	}
 
 	/**
+	 * MapオブジェクトをtoStringする。
+	 * @param params Mapパラメータ
+	 * @return toString結果
+	 */
+	public static String toStringMap(Map<String, String> params) {
+		StringBuffer buff = new StringBuffer();
+		
+		if (!UtilityComponent.isEmpty(params)) {
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				String key = entry.getKey();
+				String val = entry.getValue();
+				buff.append(key).append(":").append(val).append(System.lineSeparator());
+			}
+		}
+		
+		return buff.toString();
+	}
+
+	/**
 	 * オブジェクトの構造をtoStringする。
 	 * @param obj toString対象のオブジェクト
 	 * @return toString結果
