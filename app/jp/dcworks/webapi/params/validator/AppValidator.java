@@ -8,7 +8,7 @@ import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.Payload;
 
-import jp.dcworks.webapi.core.components.UtilityComponent;
+import jp.dcworks.core.components.UtilityComponent;
 import play.data.validation.Constraints;
 import play.libs.F;
 import play.libs.F.Tuple;

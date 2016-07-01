@@ -1,4 +1,4 @@
-package jp.dcworks.webapi.core.components;
+package jp.dcworks.core.components;
 
 import java.util.Map;
 

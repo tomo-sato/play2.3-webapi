@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
-import jp.dcworks.webapi.core.components.WSClient;
+import jp.dcworks.core.components.WSClient;
 import play.Configuration;
 import play.libs.ws.WSResponse;
 

@@ -1,4 +1,4 @@
-package jp.dcworks.webapi.core.components;
+package jp.dcworks.core.components;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

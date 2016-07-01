@@ -11,8 +11,8 @@ import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
-import jp.dcworks.webapi.core.components.RequestUtilityComponent;
-import jp.dcworks.webapi.core.components.UtilityComponent;
+import jp.dcworks.core.components.RequestUtilityComponent;
+import jp.dcworks.core.components.UtilityComponent;
 import play.core.j.JavaResultExtractor;
 import play.libs.F.Promise;
 import play.mvc.Action;

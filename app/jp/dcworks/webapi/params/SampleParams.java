@@ -1,6 +1,6 @@
 package jp.dcworks.webapi.params;
 
-import jp.dcworks.webapi.core.components.UtilityComponent;
+import jp.dcworks.core.components.UtilityComponent;
 import jp.dcworks.webapi.params.validator.AppValidator;
 import play.data.validation.Constraints.Max;
 import play.data.validation.Constraints.Min;
