@@ -1,4 +1,4 @@
 /**
  * モデルを提供する。
  */
-package jp.dcworks.core.model;
+package jp.dcworks.core.models;
