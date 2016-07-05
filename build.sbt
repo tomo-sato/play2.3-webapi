@@ -12,6 +12,5 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache,
-  javaWs,
-  "org.json" % "json" % "20160212"
+  javaWs
 )
