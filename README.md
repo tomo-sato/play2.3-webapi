@@ -1,10 +1,34 @@
 # play2.3-webapi
-play2.3-webapi は、 Play framework 2.3 ベースで作成されたWEB APIアプリケーションベースです。
+play2.3-webapi は、 Play framework 2.3 ベースで作成されたWEB APIアプリケーションベースです。<br>
+アプリケーションビルドには、サブプロジェクト [play2.3-core](https://github.com/tomo-sato/play2.3-core) が必要です。<br>
+
+
+
+## ビルド方法
+アプリケーションをクローンします。
+```
+git clone https://github.com/tomo-sato/play2.3-webapi.git
+```
+
+アプリケーションフォルダ内に移動し、git サブモジュール（playサブプロジェクト [play2.3-core](https://github.com/tomo-sato/play2.3-core)）を初期化します。
+```
+cd play2.3-webapi
+git submodule init
+git submodule update
+```
+
+git サブモジュールのブランチをmasterに切り替えます。
+```
+cd modules\play2.3-core
+git checkout master
+```
+
+以上でセットアップ完了です。
 
 
 
 ## 使用方法
-activatorコマンドで Plyaアプリケーションを起動します。
+play2.3-webapiフォルダに移動し、activatorコマンドで Plyaアプリケーションを起動します。
 ```
 >activator run
 [info] Loading project definition from C:\workspace\play2.3-webapi\project
@@ -41,7 +65,7 @@ birthday:19800408
 }
 ```
 
-レスポンス
+### レスポンス（正常）
 ```json
 {
   "result": 0,
@@ -49,10 +73,29 @@ birthday:19800408
 }
 ```
 
+### レスポンス（異常）
+```json
+{
+  "result": 1,
+  "errors": {
+    "birthday": [
+      "誕生日（birthday）は必須です。"
+    ],
+    "name": [
+      "名前（name）は必須です。"
+    ],
+    "age": [
+      "年齢（age）は必須です。"
+    ]
+  }
+}
+```
+
 
 
 ## ドキュメント
 * [play2.3-webapi アプリケーションベース API仕様](https://tomo-sato.github.io/play2.3-webapi/javadoc/)
+    * [play2.3-core アプリケーションベース API仕様](https://tomo-sato.github.io/play2.3-core/javadoc/)
 
 
 
