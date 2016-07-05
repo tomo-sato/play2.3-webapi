@@ -1,0 +1,3 @@
+[submodule "modules/play2.3-core"]
+	path = modules/play2.3-core
+	url = https://github.com/tomo-sato/play2.3-core.git
