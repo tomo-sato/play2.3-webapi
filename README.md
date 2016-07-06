@@ -94,8 +94,8 @@ birthday:19800408
 
 
 ## ドキュメント
-* [play2.3-webapi アプリケーションベース API仕様](https://tomo-sato.github.io/play2.3-webapi/javadoc/)
-    * [play2.3-core アプリケーションベース API仕様](https://tomo-sato.github.io/play2.3-core/javadoc/)
+* [play2.3-webapi アプリケーションベース API仕様](https://tomo-sato.github.io/play2.3-webapi/javadoc/index.html)
+    * [play2.3-core アプリケーションベース API仕様](https://tomo-sato.github.io/play2.3-core/javadoc/index.html)
 
 
 
